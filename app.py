@@ -404,19 +404,7 @@ def server_error(error):
     return jsonify({"error": "Internal server error"}), 500
 
 
-if __name__ == '__main__':
-    # Get configuration from environment
-    debug_mode = os.getenv("DEBUG", "False").lower() == "true"
-    host = os.getenv("HOST", "0.0.0.0")
-    port = int(os.getenv("PORT", 5000))
-    
-    logger.info(f"Starting PsycoLLM Flask server on {host}:{port}")
-    logger.info(f"Debug mode: {debug_mode}")
-    
-    # Start Flask server
-    app.run(
-        host=host,
-        port=port,
-        debug=debug_mode,
-        threaded=True
-    )
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
